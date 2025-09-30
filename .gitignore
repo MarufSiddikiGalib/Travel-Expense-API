@@ -1,0 +1,74 @@
+# =============================
+# ASP.NET Core Web API Project
+# =============================
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio cache/options
+.vs/
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+artifacts/
+
+# Test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.coverage
+*.coveragexml
+
+# Entity Framework Migrations (optional - keep if you want migrations in repo)
+# Migrations/
+
+# Databases
+*.mdf
+*.ldf
+*.ndf
+
+# Config / secrets
+appsettings.*.json
+.env
+secrets.json
+
+# Package files
+*.nupkg
+*.snupkg
+*.nuspec
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+!**/[Pp]ackages/repositories.config
+
+# Logs
+*.log
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Rider / JetBrains
+.idea/
+
+# Tye
+.tye/
+
+# Others
+*.bak
+*.dbmdl
