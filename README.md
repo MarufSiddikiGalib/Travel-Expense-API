@@ -1,39 +1,45 @@
-# Travel Expense Management Web API (ASP.NET)
+# Travel Expense Management API
 
-A RESTful Web API for managing travel requests and expense claims, designed using classic **ASP.NET Web API** (not Core), with a strong N-Tier architecture and best coding practices.
+This project is a **N-tiered ASP.NET solution** for managing travel expenses. It follows best practices including N-tier architecture, SOLID principles, and is designed for modularity and maintainability.
+
+---
+
+## Solution Structure
+
+- **DAL**  
+  Data Access Layer. Contains Entity Framework models, database context, repository interfaces and implementations.
+
+- **BLL**  
+  Business Logic Layer. Contains business logic, services, and DTOs.
+
+- **PresentationAPI**  
+  Web API Layer. Exposes RESTful endpoints for all business operations (CRUD, approval workflows, search/filter, reporting, notifications, etc).
+
+- **PresentationMVC**  
+  (Optional) ASP.NET MVC project for web-based UI (pages, views, etc).
 
 ---
 
 ## Features
 
-- **Travel Requests**: Employees submit and track travel requests.
-- **Expense Claims**: Submit claims with receipt details for approved travel.
-- **Approval Workflow**: Managers approve/reject requests and claims.
-- **Notifications**: Users receive notifications on status changes.
-- **Advanced Filtering & Search**: Find requests/claims by user, status, dates, etc.
-- **Expense Reports**: Generate summaries per user, trip, or period.
-- **Budget Enforcement**: Claims cannot exceed user or trip budget.
-- **Audit Logging**: All actions (submit, approve, reject) are logged.
+- **Travel Requests:** Submission, approval, status management.
+- **Expense Claims:** CRUD operations, approval workflow, file uploads for receipts.
+- **Notifications:** In-app (API endpoint) notifications for approvals/rejections.
+- **Reporting:** Expense summaries, filters by user/date/status/trip.
+- **Budget Enforcement:** Prevents over-budget claims.
+- **Audit Logging:** Track all user actions for compliance.
 
 ---
 
-## Architecture
+## Technologies Used
 
-- **N-Tier Design**:
-  - **Presentation Layer**: API Controllers (exposes RESTful endpoints)
-  - **Business Logic Layer (BLL)**: Services (enforces rules, workflows)
-  - **Data Access Layer (DAL)**: Repositories (Entity Framework, SQL Server)
-- **SOLID Principles**:  
-  Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion
-
----
-
-## Technologies
-
-- **ASP.NET Web API (classic, not Core)**
-- **Entity Framework 6**
-- **SQL Server**
-- **JSON** for all requests and responses
+- **ASP.NET Web API**
+- **ASP.NET MVC** (optional)
+- **Entity Framework (EF 6 or Core)**
+- **SQL Server** (or compatible RDBMS)
+- **C#**
+- **N-tier architecture**
+- **SOLID principles**
 
 ---
 
@@ -41,101 +47,39 @@ A RESTful Web API for managing travel requests and expense claims, designed usin
 
 ### Prerequisites
 
-- [Visual Studio 2019/2022](https://visualstudio.microsoft.com/)
-- [.NET Framework 4.6.1+](https://dotnet.microsoft.com/download/dotnet-framework)
-- [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+- Visual Studio 2019 or later
+- .NET Framework (or .NET Core if using Core projects)
+- SQL Server (Express/LocalDB is sufficient for dev)
+- NuGet packages: EntityFramework, Microsoft.AspNet.WebApi, etc.
 
-### Setup
+### How to Run
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/MarufSiddikiGalib/travel-expense-api.git
-   cd travel-expense-api
-   ```
+1. **Clone the repository.**
+2. **Open the solution** in Visual Studio.
+3. **Restore NuGet packages.**
+4. **Set up the database connection string** in `DAL\App.config` or `PresentationAPI\web.config`.
+5. **Apply EF migrations** (if using Code First).
+6. **Set `PresentationAPI` as the startup project.**
+7. **Run the project**. Use Postman, Swagger, or any API client to test endpoints.
 
-2. **Configure the Database Connection:**
-   - Update the connection string in `Web.config`:
-     ```xml
-     <connectionStrings>
-       <add name="DefaultConnection" connectionString="Data Source=YOUR_SERVER;Initial Catalog=TravelExpenseDb;Integrated Security=True;" providerName="System.Data.SqlClient" />
-     </connectionStrings>
-     ```
+### Folder Structure
 
-3. **Update Database (EF Migrations):**
-   - Open the Package Manager Console in Visual Studio:
-     ```
-     Update-Database
-     ```
-
-4. **Run the Application:**
-   - Press `F5` or click "Start" in Visual Studio.
-   - By default, the API will be accessible at `http://localhost:xxxx/api/`
-
-5. **Test the API:**
-   - Use [Postman](https://www.postman.com/) or [Swagger UI](https://github.com/heldersepu/Swagger-Net) if integrated.
+- `DAL/EF/` — Entity Framework context and entities
+- `DAL/Interfaces/` — Repository interfaces
+- `DAL/Repos/` — Repository implementations
+- `BLL/DTOs/` — Data Transfer Objects
+- `BLL/Service/` — Business logic/services
+- `PresentationAPI/Controllers/` — API endpoints
+- `PresentationMVC/` — (If used) MVC controllers, views, models
 
 ---
 
-## API Endpoints (Examples)
+## Contribution
 
-- `POST /api/travelrequests` — Submit a travel request
-- `GET /api/travelrequests/search?...` — Advanced search/filtering
-- `POST /api/expenseclaims` — Submit an expense claim
-- `POST /api/expenseclaims/{id}/approve` — Approve/reject claims
-- `GET /api/reports/expenses?...` — Expense reports
-- `GET /api/notifications/{userId}` — View notifications
-
----
-
-## Project Structure
-
-```
-/Controllers      // API Endpoints (Presentation Layer)
-/Services         // Business Logic Layer (BLL)
-/Repositories     // Data Access Layer (DAL)
-/Models           // Entity models (EF POCOs)
-/DTOs             // Data Transfer Objects
-/Migrations       // EF Migrations
-/Web.config       // Configuration
-```
-
----
-
-## Functionalities Beyond CRUD
-
-1. **Advanced Filtering/Search**  
-   Find requests or claims by user, date, status, destination, and more.
-
-2. **Expense Reports**  
-   Get summaries by user, trip, or time period in JSON format.
-
-3. **Automated Notifications**  
-   Notify users when requests or claims are approved/rejected.
-
-4. **Budget Enforcement**  
-   Prevent claims exceeding user/trip budget, show remaining budget.
-
-5. **Audit Logging**  
-   Every action (submit, update, approve, reject) is logged and retrievable.
-
----
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -am 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Pull requests are welcome. For major changes, open an issue first to discuss what you would like to change.
 
 ---
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-## Author
-
-- [Maruf Siddiki Galib](https://github.com/MarufSiddikiGalib)
+This project is for educational use. Add a license if you plan to release it publicly.
