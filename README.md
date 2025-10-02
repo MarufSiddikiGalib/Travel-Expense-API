@@ -82,4 +82,4 @@ Pull requests are welcome. For major changes, open an issue first to discuss wha
 
 ## License
 
-This project is for educational use. Add a license if you plan to release it publicly.
+This project is for educational use.
