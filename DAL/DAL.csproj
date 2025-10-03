@@ -40,17 +40,11 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework6.Npgsql, Version=6.4.0.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework6.Npgsql.6.4.0\lib\net461\EntityFramework6.Npgsql.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
-    </Reference>
-    <Reference Include="Npgsql, Version=6.0.13.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Npgsql.6.0.13\lib\netstandard2.0\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -104,9 +98,9 @@
     <Compile Include="EF\Tables\TravelRequest.cs" />
     <Compile Include="EF\Tables\User.cs" />
     <Compile Include="EF\TravelExpenseDbContext.cs" />
-    <Compile Include="Migrations\202510020837501_InitialCreate.cs" />
-    <Compile Include="Migrations\202510020837501_InitialCreate.Designer.cs">
-      <DependentUpon>202510020837501_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202510041515108_InitialCreate.cs" />
+    <Compile Include="Migrations\202510041515108_InitialCreate.Designer.cs">
+      <DependentUpon>202510041515108_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -121,8 +115,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202510020837501_InitialCreate.resx">
-      <DependentUpon>202510020837501_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202510041515108_InitialCreate.resx">
+      <DependentUpon>202510041515108_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

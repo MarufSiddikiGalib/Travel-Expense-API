@@ -1,7 +1,8 @@
-﻿using System.Web.Http;
-using BLL.DTOs;
+﻿using BLL.DTOs;
 using BLL.Service;
 using PresentationAPI.Models;
+using System;
+using System.Web.Http;
 
 namespace PresentationAPI.Controllers
 {
@@ -9,10 +10,10 @@ namespace PresentationAPI.Controllers
     {
         private readonly IUserService userService;
 
-       
+
         public UsersController()
         {
-            
+
             var dbContext = new DAL.EF.TravelExpenseDbContext();
             var userRepo = new DAL.Repos.UserRepository(dbContext);
             userService = new UserService(userRepo);
@@ -22,22 +23,29 @@ namespace PresentationAPI.Controllers
         [Route("api/users/register")]
         public IHttpActionResult Register(UserRegistrationModel model)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
-            var dto = new UserRegistrationDto
+            try
             {
-                Name = model.Name,
-                Email = model.Email,
-                Role = model.Role,
-                Password = model.Password
-            };
+                if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            bool result = userService.Register(dto);
+                var dto = new UserRegistrationDto
+                {
+                    Name = model.Name,
+                    Email = model.Email,
+                    Role = model.Role,
+                    Password = model.Password
+                };
 
-            if (!result)
-                return BadRequest("Email already exists.");
+                bool result = userService.Register(dto);
 
-            return Ok("Registration successful.");
+                if (!result)
+                    return BadRequest("Email already exists.");
+
+                return Ok("Registration successful.");
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
     }
 }
