@@ -47,6 +47,7 @@
                         Name = c.String(),
                         Email = c.String(),
                         Role = c.String(),
+                        Password = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
